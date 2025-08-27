@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Biblioteca - Acesso ao Sistema</title>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: 'Open Sans', sans-serif;
+    }
+    body, html {
+      height: 100%;
+      background: url('e8b28f2a-0f85-4107-bcdf-40ed638bcae4.png') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #333;
+      position: relative;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(20, 30, 40, 0.75);
+      z-index: 0;
+    }
+    .container {
+      position: relative;
+      z-index: 1;
+      background-color: rgba(255, 255, 255, 0.96);
+      width: 420px;
+      border-radius: 16px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+      padding: 50px 40px;
+      text-align: center;
+    }
+    .container h1 {
+      font-family: 'Merriweather', serif;
+      font-weight: 700;
+      font-size: 2.8rem;
+      color: #2c3e50;
+      margin-bottom: 12px;
+      letter-spacing: 1.5px;
+    }
+    .container p.subtitle {
+      color: #555;
+      font-weight: 600;
+      margin-bottom: 40px;
+      font-size: 1.1rem;
+    }
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      padding: 18px 0;
+      margin-bottom: 24px;
+      font-size: 1.25rem;
+      font-weight: 700;
+      border-radius: 14px;
+      cursor: pointer;
+      border: none;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+      text-decoration: none;
+      color: white;
+      user-select: none;
+      text-align: center;
+      user-select: none;
+    }
+    .btn-admin {
+      background-color: #1b4f72;
+      box-shadow: 0 6px 16px rgba(27, 79, 114, 0.45);
+    }
+    .btn-admin:hover,
+    .btn-admin:focus-visible {
+      background-color: #153d57;
+      box-shadow: 0 8px 20px rgba(21, 61, 87, 0.75);
+      outline: none;
+    }
+    .btn-user {
+      background-color: #2980b9;
+      box-shadow: 0 6px 16px rgba(41, 128, 185, 0.45);
+    }
+    .btn-user:hover,
+    .btn-user:focus-visible {
+      background-color: #1f6390;
+      box-shadow: 0 8px 20px rgba(31, 99, 144, 0.75);
+      outline: none;
+    }
+    .btn-visitor {
+      background: transparent;
+      color: #2980b9;
+      border: 2px solid #2980b9;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 12px 0;
+      margin-top: 0;
+      box-shadow: none;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .btn-visitor:hover,
+    .btn-visitor:focus-visible {
+      background-color: #2980b9;
+      color: white;
+      outline: none;
+    }
+    /* Ícones simples */
+    .btn .icon {
+      font-size: 1.4rem;
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+  <main class="container" role="main" aria-label="Acesso ao sistema da Biblioteca">
+    <h1>Biblioteca</h1>
+    <p class="subtitle">Escolha uma das opções para acessar o sistema</p>
+
+    <form action="admin.php" method="POST" aria-label="Login admin">
+      <input type="hidden" name="perfil" value="admin" />
+      <button type="submit" class="btn btn-admin" aria-label="Entrar como administrador">
+        <span class="icon" aria-hidden="true">🔒</span> Entrar como Admin
+      </button>
+    </form>
+
+    <a href="entrar.php" class="btn btn-user" role="button" aria-label="Cadastrar ou entrar como usuário">
+      <span class="icon" aria-hidden="true">👤</span> Cadastrar / Entrar
+    </a>
+
+    <a href="home.php" class="btn btn-visitor" role="button" aria-label="Entrar como visitante">
+      Entrar como Visitante
+    </a>
+  </main>
+</body>
+</html>
