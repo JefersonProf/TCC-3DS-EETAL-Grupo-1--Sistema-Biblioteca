@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Entrar - Biblioteca</title>
-<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<title>Entrar - Biblioteca Evolução</title>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 <style>
     * {
         margin: 0; padding: 0; box-sizing: border-box;
@@ -12,81 +12,125 @@
     }
     body, html {
         height: 100%;
-        background: url('e8b28f2a-0f85-4107-bcdf-40ed638bcae4.png') no-repeat center center fixed;
-        background-size: cover;
+        background-color: #0052a5;
         display: flex;
         justify-content: center;
         align-items: center;
-        position: relative;
     }
-    body::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        background: rgba(20, 30, 40, 0.75);
-        z-index: 0;
-    }
-    .container {
-        position: relative;
-        z-index: 1;
-        background-color: rgba(255, 255, 255, 0.96);
-        width: 420px;
-        border-radius: 16px;
+
+    .main-container {
+        display: flex;
+        width: 900px;
+        max-width: 95%;
+        background-color: white;
+        border-radius: 12px;
+        overflow: hidden;
         box-shadow: 0 12px 30px rgba(0,0,0,0.25);
-        padding: 40px 30px;
+    }
+
+    .info-section {
+        flex: 1;
+        background-color: #0052a5;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 40px;
         text-align: center;
     }
-    h2 {
-        font-family: 'Merriweather', serif;
-        font-weight: 700;
-        font-size: 2rem;
-        color: #2c3e50;
+
+    .info-section img {
+        width: 80px;
         margin-bottom: 20px;
     }
-    input {
+
+    .info-section h1 {
+        font-family: 'Merriweather', serif;
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+
+    .info-section p {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+
+    .login-section {
+        flex: 1;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .login-section h2 {
+        font-family: 'Merriweather', serif;
+        font-weight: 700;
+        font-size: 1.8rem;
+        color: #0052a5;
+        margin-bottom: 20px;
+    }
+
+    .login-section input {
         width: 100%;
         padding: 12px;
-        margin: 10px 0;
-        border-radius: 8px;
+        margin-bottom: 15px;
+        border-radius: 6px;
         border: 1px solid #ccc;
         font-size: 1rem;
     }
-    button {
+
+    .login-section button {
         width: 100%;
         padding: 14px;
         border: none;
-        border-radius: 8px;
-        background-color: #2980b9;
+        border-radius: 6px;
+        background-color: #0052a5;
         color: white;
         font-size: 1.1rem;
         font-weight: 700;
         cursor: pointer;
         transition: background-color 0.3s ease;
+        margin-bottom: 10px;
     }
-    button:hover {
-        background-color: #1f6390;
+
+    .login-section button:hover {
+        background-color: #003d7a;
     }
-    p {
-        margin-top: 15px;
+
+    .login-section p {
+        text-align: center;
+        font-size: 0.95rem;
     }
-    a {
-        color: #2980b9;
+
+    .login-section a {
+        color: #0052a5;
         font-weight: 600;
         text-decoration: none;
     }
-    a:hover {
+
+    .login-section a:hover {
         text-decoration: underline;
     }
 </style>
 </head>
 <body>
 
-<div class="container">
-    <h2>Entrar na Biblioteca</h2>
-    <input type="email" placeholder="Digite seu Gmail" pattern=".+@gmail\.com" required>
-    <input type="password" placeholder="Digite sua senha" required>
-    <button>Entrar</button>
-    <p>Não tem conta? <a href="cadastrar.php">Faça seu cadastro</a></p>
+<div class="main-container">
+    <div class="info-section">
+        <img src="imagem/logo.png" alt="Logo Biblioteca">
+        <h1>Bem-vindo à Biblioteca Evolução!</h1>
+        <p>Acesse a plataforma usando seus dados cadastrados na Biblioteca Evolução. Se não os tiver, faça seu cadastro.</p>
+    </div>
+
+    <div class="login-section">
+        <h2>Login</h2>
+        <input type="text" placeholder="E-mail" required>
+        <input type="password" placeholder="Senha" required>
+        <button>Acessar</button>
+        <p>Não tem conta? <a href="cadastrar.php">Faça seu cadastro</a></p>
+    </div>
 </div>
 
 </body>
