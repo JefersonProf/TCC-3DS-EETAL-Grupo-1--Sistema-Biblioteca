@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -49,6 +52,51 @@
       font-size: 15px;
     }
 
+    /* Perfil */
+    .user-menu {
+      position: relative;
+      display: inline-block;
+    }
+
+    .user-avatar {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      object-fit: cover;
+      cursor: pointer;
+      border: 2px solid #003366;
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 55px;
+      background-color: #fff;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      min-width: 180px;
+      z-index: 1000;
+    }
+
+    .dropdown a {
+      display: block;
+      padding: 12px 15px;
+      color: #003366;
+      text-decoration: none;
+      font-size: 15px;
+      transition: background 0.2s;
+    }
+
+    .dropdown a:hover {
+      background-color: #f0f0f0;
+    }
+
+    .user-menu:hover .dropdown {
+      display: block;
+    }
+
+    /* Hero */
     .hero {
       display: flex;
       justify-content: space-between;
@@ -101,7 +149,7 @@
       transition: opacity 0.5s ease-in-out;
     }
 
-    /* ACERVO */
+    /* Acervo */
     .acervo {
       display: flex;
       justify-content: space-between;
@@ -157,10 +205,6 @@
       margin-bottom: 20px;
     }
 
-    .acervo-texto h2 span {
-      color: #00aaff;
-    }
-
     .acervo-texto p {
       font-size: 16px;
       line-height: 1.6;
@@ -176,7 +220,7 @@
       cursor: pointer;
     }
 
-    /* NOVA SEÇÃO */
+    /* Blog / Recursos */
     .recursos {
       text-align: center;
       padding: 80px 60px;
@@ -234,6 +278,14 @@
       color: #555;
       line-height: 1.5;
     }
+
+    footer {
+      background-color: #003366;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
   </style>
 </head>
 <body>
@@ -243,15 +295,36 @@
     </div>
     <nav>
       <ul>
-        <li><a href="index.php">Home</a></li>
+        <li><a href="home.php" style="text-decoration:underline;">Home</a></li>
         <li><a href="quem_somos.php">Quem Somos</a></li>
         <li><a href="recursos.php">Recursos</a></li>
         <li><a href="blog.php">Blog</a></li>
         <li><a href="nosso-acervo.php">Nosso Acervo</a></li>
         <li><a href="contato.php">Contato</a></li>
+
+        <?php if (isset($_SESSION['usuario_tipo']) && $_SESSION['usuario_tipo'] === "admin"): ?>
+            <li><a href="relatorio.php">Relatório</a></li>
+            <li><a href="status.php">Status</a></li>
+        <?php endif; ?>
       </ul>
     </nav>
-    <button class="btn-entrar" onclick="window.location.href='entrar.php'">Entrar</button>
+      </ul>
+    </nav>
+
+    <?php if (isset($_SESSION['usuario_nome'])): ?>
+      <div class="user-menu">
+        <img src="<?= $_SESSION['usuario_foto'] ?? 'imagem/padrao.png'; ?>" 
+             alt="Perfil" class="user-avatar">
+
+        <div class="dropdown">
+          <a href="minha_conta.php">👤 Minha Conta</a>
+          <a href="reservados.php">📚 Reservados</a>
+          <a href="logout.php">🚪 Sair</a>
+        </div>
+      </div>
+    <?php else: ?>
+      <button class="btn-entrar" onclick="window.location.href='entrar.php'">Entrar</button>
+    <?php endif; ?>
   </header>
 
   <section class="hero">
@@ -275,9 +348,7 @@
       </div>
     </div>
     <div class="acervo-texto">
-      <h2>
-        Seu acervo completo, diversificado e sempre atualizado!
-      </h2>
+      <h2>Seu acervo completo, diversificado e sempre atualizado!</h2>
       <p>
         Em 2025, a Biblioteca Evolução vem liderando em inovação para educação e
         desenvolvimento profissional. Com uma plataforma acessível e interativa, 
@@ -335,3 +406,4 @@
   </footer>
 </body>
 </html>
+

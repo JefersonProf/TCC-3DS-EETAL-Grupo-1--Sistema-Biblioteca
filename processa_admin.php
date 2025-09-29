@@ -2,9 +2,9 @@
 session_start();
 
 $servername = "localhost";
-$username = "root";
-$password = "etal@2025";
-$dbname = "biblioteca";
+$username   = "root";
+$password   = "etal@2025";
+$dbname     = "biblioteca";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -23,20 +23,23 @@ $result = $stmt->get_result();
 if ($result->num_rows === 1) {
     $row = $result->fetch_assoc();
 
-    if ($senha === $row['senha']) {
-        $_SESSION['tipo'] = "admin";
-        $_SESSION['id']   = $row['id'];
-        $_SESSION['nome'] = $row['nome'];
+    if ($senha === $row['senha']) { 
+        $_SESSION['usuario_nome']   = $row['nome'];
+        $_SESSION['usuario_id']     = $row['id'];
+        $_SESSION['usuario_tipo']   = "admin";
 
-        header("Location: painel_admin.php");
-        exit();
+        header("Location: home.php");
+        exit;
     } else {
-        echo "<script>alert('Senha incorreta!'); window.location.href='admin.php';</script>";
+        $_SESSION['erro_login'] = "Senha incorreta!";
+        header("Location: admin.php");
+        exit;
     }
 } else {
-    echo "<script>alert('Usuário não encontrado!'); window.location.href='admin.php';</script>";
+    $_SESSION['erro_login'] = "Usuário não encontrado!";
+    header("Location: admin.php");
+    exit;
 }
 
 $stmt->close();
 $conn->close();
-?>

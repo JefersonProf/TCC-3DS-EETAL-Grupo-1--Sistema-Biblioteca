@@ -74,11 +74,44 @@
     a:hover {
         text-decoration: underline;
     }
+
+    .alerta-sucesso, .alerta-erro {
+        padding: 12px;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        font-weight: bold;
+        text-align: center;
+        animation: fadeIn 0.6s ease-in-out;
+    }
+    .alerta-sucesso {
+        background-color: #27ae60;
+        color: white;
+    }
+    .alerta-erro {
+        background-color: #c0392b;
+        color: white;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
 </style>
 </head>
 <body>
 
 <div class="container">
+    <?php if (isset($_GET['erro'])): ?>
+        <div class="alerta-erro">
+            <?php if ($_GET['erro'] == 1): ?>
+                ⚠️ Preencha os campos obrigatórios!
+            <?php elseif ($_GET['erro'] == 2): ?>
+                ❌ Erro ao cadastrar. Tente novamente.
+            <?php elseif ($_GET['erro'] == 3): ?>
+                ⚠️ Este e-mail já está cadastrado! Faça login.
+            <?php endif; ?>
+        </div>
+    <?php endif; ?>
+
     <h2>Cadastro de Usuário</h2>
 
     <form action="processa_cadastro.php" method="POST">
@@ -96,7 +129,7 @@
         <button type="submit">Cadastrar</button>
     </form>
 
-    <p><a href="entrar.html">Já tenho conta</a></p>
+    <p><a href="entrar.php">Já tenho conta</a></p>
 </div>
 
 </body>

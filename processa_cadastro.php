@@ -1,14 +1,7 @@
 <?php
-$servername = "localhost";
-$username = "root"; 
-$password = "etal@2025"; 
-$dbname = "biblioteca";
+session_start();
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Erro de conexão: " . $conn->connect_error);
-}
+include "conexao.php";
 
 $nome = $_POST['nome'] ?? '';
 $email = $_POST['email'] ?? '';
@@ -17,9 +10,21 @@ $data_nascimento = $_POST['data_nascimento'] ?? '';
 $telefone = $_POST['telefone'] ?? '';
 $genero = $_POST['genero'] ?? '';
 
-if (empty($nome) || empty($email) || empty($senha)) {
-    die("Por favor, preencha os campos nome, email e senha.");
+if (empty($nome) || empty($email) || empty($senha) || empty($data_nascimento)) {
+    header("Location: cadastrar.php?erro=1");
+    exit;
 }
+
+$check = $conn->prepare("SELECT id FROM usuarios WHERE email = ?");
+$check->bind_param("s", $email);
+$check->execute();
+$result = $check->get_result();
+
+if ($result->num_rows > 0) {
+    header("Location: cadastrar.php?erro=3");
+    exit;
+}
+$check->close();
 
 $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
 
@@ -27,10 +32,11 @@ $stmt = $conn->prepare("INSERT INTO usuarios (nome, email, senha, data_nasciment
 $stmt->bind_param("ssssss", $nome, $email, $senhaHash, $data_nascimento, $telefone, $genero);
 
 if ($stmt->execute()) {
-    echo "<h2>Cadastro realizado com sucesso!</h2>";
-    echo "<a href='entrar.html'>Ir para login</a>";
+    header("Location: entrar.php?sucesso=1");
+    exit;
 } else {
-    echo "Erro ao cadastrar: " . $stmt->error;
+    header("Location: cadastrar.php?erro=2");
+    exit;
 }
 
 $stmt->close();

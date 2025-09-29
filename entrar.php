@@ -113,6 +113,21 @@
     .login-section a:hover {
         text-decoration: underline;
     }
+
+    .alerta-sucesso, .alerta-erro {
+        padding: 12px;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        font-weight: bold;
+        text-align: center;
+        animation: fadeIn 0.6s ease-in-out;
+    }
+    .alerta-sucesso { background-color: #27ae60; color: white; }
+    .alerta-erro { background-color: #c0392b; color: white; }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
 </style>
 </head>
 <body>
@@ -125,10 +140,18 @@
     </div>
 
     <div class="login-section">
+        <?php if (isset($_GET['sucesso']) && $_GET['sucesso'] == 1): ?>
+            <div class="alerta-sucesso">✅ Cadastro realizado com sucesso! Agora faça login.</div>
+        <?php elseif (isset($_GET['erro']) && $_GET['erro'] == 1): ?>
+            <div class="alerta-erro">❌ E-mail ou senha incorretos!</div>
+        <?php endif; ?>
+
         <h2>Login</h2>
-        <input type="text" placeholder="E-mail" required>
-        <input type="password" placeholder="Senha" required>
-        <button>Acessar</button>
+        <form action="processa_login.php" method="POST">
+            <input type="email" name="email" placeholder="E-mail" required>
+            <input type="password" name="senha" placeholder="Senha" required>
+            <button type="submit">Acessar</button>
+        </form>
         <p>Não tem conta? <a href="cadastrar.php">Faça seu cadastro</a></p>
     </div>
 </div>

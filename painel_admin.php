@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// Só entra se for admin logado
 if (!isset($_SESSION['tipo']) || $_SESSION['tipo'] !== 'admin') {
     header("Location: admin.php");
     exit();

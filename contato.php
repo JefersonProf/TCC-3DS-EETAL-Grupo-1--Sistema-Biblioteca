@@ -80,16 +80,45 @@
     .submit-btn:hover {
       background: #003d80;
     }
+
+    /* Bloco do endereço */
+    .endereco {
+      margin-top: 40px;
+      padding: 20px;
+      background: #f4f7fa;
+      border-left: 5px solid #002147;
+      border-radius: 6px;
+    }
+
+    .endereco h2 {
+      margin-top: 0;
+      color: #002147;
+    }
+
+    .mapa {
+      margin-top: 20px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .voltar {
+      margin-bottom: 20px;
+    }
+
+    .voltar a {
+      text-decoration: none;
+      color: #0056b3;
+      font-weight: bold;
+    }
   </style>
 </head>
+<body>
 
   <div class="container">
     <div class="voltar">
       <a href="home.php">← Voltar</a>
     </div>
 
-<body>
-  <div class="container">
     <h1>Contato<span style="color:#007bff;">.</span></h1>
     <p>Precisa de ajuda ou deseja mais informações? Preencha o formulário abaixo e nossa equipe retornará rapidamente.</p>
     
@@ -141,6 +170,21 @@
 
       <button type="submit" class="submit-btn">Solicitar Contato</button>
     </form>
+
+    <div class="endereco">
+      <h2>📍 Nosso Endereço</h2>
+      <p><strong>Escola: Tarcisio Alvares Lobo</strong></p>
+      <p>Rua Estela Borges Morato, 500<br>
+      Vila Siqueira - São Paulo - SP<br>
+      CEP: 02722-000</p>
+
+      <div class="mapa">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.251094234952!2d-46.67754612377963!3d-23.596545463493898!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce56d7c0a4b8bb%3A0x6a2a8e0c1d471!2sRua%20Estela%20Borges%20Morato%2C%20500%20-%20Vila%20Siqueira%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2002722-000!5e0!3m2!1spt-BR!2sbr!4v1694182269870!5m2!1spt-BR!2sbr" 
+          width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy">
+        </iframe>
+      </div>
+    </div>
   </div>
 </body>
 </html>
